@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BigQuery Release Notes</title>
+  <meta name="description" content="Browse the latest Google BigQuery release notes and share them on Twitter/X." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <!-- ─── Hero / Header ─── -->
+  <header id="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.5 9.5L12 4L19.5 9.5V18.5C19.5 19.0523 19.0523 19.5 18.5 19.5H5.5C4.94772 19.5 4.5 19.0523 4.5 18.5V9.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 15H15M9 12H15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1>BigQuery Release Notes</h1>
+          <p class="subtitle">Latest updates from Google Cloud</p>
+        </div>
+      </div>
+
+      <button id="refresh-btn" class="btn-refresh" title="Refresh release notes">
+        <svg class="refresh-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C15.3 3 18.18 4.87 19.5 7.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M21 3V8H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="btn-label">Refresh</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── Main Content ─── -->
+  <main id="app-main">
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+      <div class="spinner-wrap">
+        <div class="spinner"></div>
+        <p>Fetching release notes&hellip;</p>
+      </div>
+    </div>
+
+    <!-- Error banner -->
+    <div id="error-banner" class="error-banner hidden">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8V12M12 16H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span id="error-message"></span>
+    </div>
+
+    <!-- Cards container -->
+    <div id="notes-container" class="notes-grid"></div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="empty-state hidden">
+      <svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="currentColor" stroke-width="2.5"/><path d="M6 18H42" stroke="currentColor" stroke-width="2.5"/><circle cx="12" cy="14" r="1.5" fill="currentColor"/><circle cx="18" cy="14" r="1.5" fill="currentColor"/><circle cx="24" cy="14" r="1.5" fill="currentColor"/><path d="M16 28H32M16 33H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <p>No release notes found. Click <strong>Refresh</strong> to load.</p>
+    </div>
+  </main>
+
+  <!-- ─── Tweet Modal ─── -->
+  <div id="tweet-modal" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Share on X / Twitter</h2>
+        <button id="modal-close" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="tweet-text">Compose your post</label>
+        <textarea id="tweet-text" maxlength="280" rows="5" placeholder="What's happening?"></textarea>
+        <div class="char-count"><span id="char-current">0</span> / 280</div>
+      </div>
+      <div class="modal-footer">
+        <button id="modal-cancel" class="btn btn-ghost">Cancel</button>
+        <button id="modal-tweet" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Post on X
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
